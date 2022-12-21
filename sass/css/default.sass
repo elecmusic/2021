@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+$family-sans-serif: 'Inter', 'Gothic A1', sans-serif;
+
+$link: #3b4890
+$link-hover: #969fd3
+
+$navbar-background-color: $link
+$navbar-item-color: #ffffff
+$navbar-item-hover-color: $link-hover
+$footer-background-color: $link
+$footer-padding: 1.2rem 1.5rem 1.2rem
+
+@import ../../node_modules/bulma/bulma.sass
+
+// sticky footer
+html,body
+  min-height: 100vh
+  display: flex
+  flex-direction: column
+
+// overlay on album cover
+.album-cover .album-meta
+    display: none
+.album-cover:hover .album-meta
+    display: flex
+.album-cover:hover figure
+    -webkit-filter: brightness(20%)

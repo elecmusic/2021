@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block style %}
+    <link rel="stylesheet" href="{{config.base_url}}/css/default.css">
+    {% endblock %}
+    {% if config.mode == "Build" %}
+        {% block analytics %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{config.extra.google_analytics}}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', '{{config.extra.google_analytics}}');
+        </script>
+        {% endblock %}
+    {% endif %}
+
+    {% block metadata %}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ current_url }}">
+    <meta property="og:site_name" content="{{ config.title }}">
+    <meta name="twitter:card" content="summary">
+
+    {% set title = config.title %}
+    <title>{{title}}</title>
+    <meta property="og:title" content="{{ title }}">
+    <meta name="twitter:title" content="{{ title }}">
+
+    {% set description = config.description %}
+    <meta name="description" content="{{ description }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta name="twitter:description" content="{{ description }}">
+
+    {% set thumbnail_url = get_url(path='/thumbnail.png', trailing_slash=false) %}
+    <meta name="twitter:image" content="{{ thumbnail_url }}">
+    <meta property="og:image" content="{{ thumbnail_url }}">
+    {% endblock %}
+</head>
+
+<body>
+    {% block body %}
+
+    {% block navbar %}
+    <header class="navbar is-transparent" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand container">
+            <div class="navbar-brand">
+                <a class="navbar-item has-text-weight-bold is-uppercase" href="{{ config.base_url }}">
+                    연말결산
+                </a>
+                <div class="navbar-item">/</div>
+                <a class="navbar-item has-text-weight-bold is-uppercase" rel="external" href="https://gall.dcinside.com/elecmusic">
+                    전음갤
+                </a>
+            </div>
+        </div>
+    </header>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %}
+    <footer class="footer mt-auto">
+        <div class="container is-max-widescreen">
+            <div class="has-text-centered">
+                <small class="has-text-white">
+                    Archived by <a href="https://github.com/{{ config.extra.github }}"
+                        rel="author external" class="has-text-white">{{ config.extra.author }}</a>.
+                </small>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+
+    {% endblock %}
+</body>
+
+</html>
